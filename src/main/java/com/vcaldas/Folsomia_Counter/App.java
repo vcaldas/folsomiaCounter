@@ -9,6 +9,8 @@ package com.vcaldas.Folsomia_Counter;
 
 import net.imagej.ImageJ;
 
+import java.io.File;
+
 import org.scijava.ItemIO;
 import org.scijava.command.Command;
 import org.scijava.plugin.Parameter;
@@ -22,11 +24,16 @@ import org.scijava.plugin.Plugin;
 @Plugin(type = Command.class, headless = true, menuPath = "DevPlugins>Folsomia Counter")
 public class App implements Command {
 
+	
 	@Parameter(label = "What is your name?")
 	private String name = "J. Doe";
 
 	@Parameter(type = ItemIO.OUTPUT)
 	private String greeting;
+	
+	private File INPUTDIR = new File("/Users/caldas/Dropbox/Photos Folsomia");
+	private File OUTPUTDIR;
+	private int NFiles;
 
 	/**
 	 * Produces an output with the well-known "Hello, World!" message. The
@@ -36,7 +43,15 @@ public class App implements Command {
 	 */
 	@Override
 	public void run() {
+		this.NFiles = INPUTDIR.list().length;
+		System.out.println(NFiles);
 		greeting = "Hello, " + name + "!";
+	}
+
+	private void setParameters() {
+		//Call gui
+		
+		
 	}
 
 	/**
